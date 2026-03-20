@@ -1,9 +1,10 @@
 // require('dotenv').config({ path: './env' })
 import dotenv from "dotenv"
 import connnectDB from "./db/index.js"
+import { app } from "./app.js"
 
 dotenv.config({
-  path: "./env"
+  path: "./.env"
 })
 
 connnectDB()
@@ -17,7 +18,7 @@ connnectDB()
     })
   })
   .catch((err) => {
-    console.log("")
+    console.log("DB Connection Error:", err)
   })
 
 
