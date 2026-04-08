@@ -20,6 +20,18 @@ import userRouter from "./routes/user.routes.js"
 // routes declaration
 app.use("/api/v1/users", userRouter)
 
-export { app }
+// error handling middleware
+app.use((err, req, res, next) => {
+  const statusCode = err.statusCode || 500
+  const message = err.message || "Something went wrong"
 
+  return res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+    errors: err.errors || [],
+  })
+})
+
+export { app }
 
